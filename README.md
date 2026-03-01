@@ -31,8 +31,8 @@ Below is a complete example command using **LP-based reduction** on the eBird da
 
 ```bash
 bin/beast vmplot \
-  /user/tbaha001/ebird/features.geojson \
-  ebird_LP_vmplot_zoom20 \
+  /path/to/input/ebird/features.geojson \
+  /path/to/output/ebird_LP_vmplot_zoom20 \
   levels:0..20 \
   iformat:geojson \
   compact:false \

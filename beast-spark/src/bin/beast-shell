@@ -1,0 +1,26 @@
+#!/bin/bash
+
+source "$(dirname "$0")/common-beast.sh"
+
+# Get the directory where the script resides
+startup_script="$(dirname "$0")/beast-startup.scala"
+
+if [ ! -f "$startup_script" ]; then
+  echo "Creating startup script at $startup_script"
+  cat <<EOL > "$startup_script"
+println(
+  """
+    |                 ___   ___       ___ ___
+    |  Empowered by:   __) |__   /\  /__   |
+    |                 |__) |___ /__\ ___/  |    version ${version}
+    |  Visit https://bitbucket.org/bdlabucr/beast/src/master/doc for more details
+    |""")
+import edu.ucr.cs.bdlab.beast._
+org.apache.spark.beast.CRSServer.startServer(sc)
+org.apache.spark.beast.SparkSQLRegistration.registerUDT
+org.apache.spark.beast.SparkSQLRegistration.registerUDF(spark)
+EOL
+fi
+
+# Execute spark-shell
+eval spark-shell -I "$startup_script" "${all_args}"

@@ -1,0 +1,18 @@
+#!/bin/bash
+# beast.sh
+
+source "$(dirname "$0")/common-beast.sh"
+
+if [[ -n "$program" && "$program" == *.jar && -f "$program" ]]; then
+  all_args+=" $program"
+else
+  all_args+=" --class edu.ucr.cs.bdlab.beast.operations.Main . $program"
+fi
+
+# Loop through each remaining command-line argument
+for arg in "$@"; do
+  # Append the argument to the string
+  all_args+=" $arg"
+done
+
+eval spark-submit "${all_args}"

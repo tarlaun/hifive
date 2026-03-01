@@ -1,0 +1,97 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+  <id>bin</id>
+  <formats>
+    <format>dir</format>
+    <format>tar.gz</format>
+    <format>zip</format>
+  </formats>
+  <baseDirectory>
+    beast-${version}
+  </baseDirectory>
+  <fileSets>
+    <fileSet>
+      <outputDirectory>bin/</outputDirectory>
+      <directory>src/bin</directory>
+      <fileMode>755</fileMode>
+      <filtered>true</filtered>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <outputDirectory></outputDirectory>
+      <source>../README.md</source>
+    </file>
+    <file>
+      <outputDirectory></outputDirectory>
+      <source>../LICENSE</source>
+    </file>
+  </files>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+        <include>edu.ucr.cs.bdlab:jhdf</include>
+        <include>javax.media:jai_core</include>
+        <include>org.geotools:gt-coverage</include>
+        <include>org.geotools:gt-epsg-hsql</include>
+        <include>org.geotools:gt-epsg-wkt</include>
+        <include>org.geotools:gt-geotiff</include>
+        <include>org.geotools:gt-http</include>
+        <include>org.geotools:gt-main</include>
+        <include>org.geotools:gt-metadata</include>
+        <include>org.geotools:gt-opengis</include>
+        <include>org.geotools:gt-referencing</include>
+        <include>org.locationtech.jts:jts-core</include>
+        <include>org.mortbay.jetty:jetty</include>
+        <include>org.mortbay.jetty:jetty-util</include>
+        <include>edu.ucr.cs.bdlab:common</include>
+        <include>edu.ucr.cs.bdlab:cg</include>
+        <include>edu.ucr.cs.bdlab:io</include>
+        <include>edu.ucr.cs.bdlab:raptor</include>
+        <include>edu.ucr.cs.bdlab:visualization</include>
+        <include>edu.ucr.cs.bdlab:beast-spark</include>
+        <!-- Add remaining JARs -->
+        <include>org.opengis:net.opengis.ows</include>
+        <include>org.geotools.ogc:org.w3.xlink</include>
+        <include>org.ejml:ejml-core</include>
+        <include>org.ejml:ejml-ddense</include>
+        <include>org.hsqldb:hsqldb</include>
+        <include>javax.units:unit-api</include>
+        <!-- New JAR dependencies -->
+        <include>systems.uom:systems-common</include>
+        <include>si.uom:si-quantity</include>
+        <include>si.uom:si-units</include>
+        <include>tech.uom.lib:uom-lib-common</include>
+        <include>tec.uom:uom-se</include>
+        <!-- <include>tec.uom:indriya</include> -->
+        <include>tech.units:indriya</include>
+        <include>com.google.protobuf:protobuf-java</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+  <moduleSets>
+    <moduleSet>
+
+      <!-- Enable access to all projects in the current multimodule build! -->
+      <useAllReactorProjects>true</useAllReactorProjects>
+
+      <!-- Now, select which projects to include in this module-set. -->
+      <includes>
+        <include>edu.ucr.cs.bdlab:common</include>
+        <include>edu.ucr.cs.bdlab:cg</include>
+        <include>edu.ucr.cs.bdlab:io</include>
+        <include>edu.ucr.cs.bdlab:raptor</include>
+        <include>edu.ucr.cs.bdlab:visualization</include>
+        <include>edu.ucr.cs.bdlab:beast-spark</include>
+      </includes>
+
+      <binaries>
+        <includeDependencies>false</includeDependencies>
+        <outputDirectory>lib</outputDirectory>
+        <unpack>false</unpack>
+      </binaries>
+    </moduleSet>
+  </moduleSets>
+</assembly>
